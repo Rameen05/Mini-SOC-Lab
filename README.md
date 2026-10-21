@@ -107,3 +107,17 @@ See [`report/incident_report.md`](report/incident_report.md) for the investigati
 ## Disclaimer
 
 This project uses simulated data for educational and portfolio purposes only. The IP addresses used are documentation-reserved example addresses.
+
+## Visualizations
+
+### Authentication Events Over Time
+
+This chart shows the distribution of simulated successful and failed authentication events over time.
+
+![Authentication Events Over Time](screenshots/authentication_timeline.png)
+
+### Failed Logins by Source IP
+
+This chart compares failed login counts by source IP and helps highlight sources that may warrant further investigation.
+
+![Failed Logins by Source IP](screenshots/failed_logins_by_ip.png)
