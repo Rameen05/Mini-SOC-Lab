@@ -159,5 +159,6 @@ This project uses simulated data for educational and portfolio purposes only. Th
 
 The following screenshot shows the Python investigation results, including the identification of repeated failed login attempts followed by a successful admin login.
 
+![Authentication Detection Output](screenshots/authentication_detection_output.png)
 
 
