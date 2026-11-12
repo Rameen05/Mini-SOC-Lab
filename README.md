@@ -154,3 +154,10 @@ This chart compares failed login counts by source IP and helps highlight sources
 ## Disclaimer
 
 This project uses simulated data for educational and portfolio purposes only. The IP addresses used are documentation-reserved example addresses.
+
+## Authentication Detection Output
+
+The following screenshot shows the Python investigation results, including the identification of repeated failed login attempts followed by a successful admin login.
+
+
+
