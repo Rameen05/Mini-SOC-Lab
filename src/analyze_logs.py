@@ -45,21 +45,27 @@ suspicious = []
 
 for ip in flagged_ips.index:
     ip_events = df[df["source_ip"] == ip].sort_values("timestamp")
-    success_events = ip_events[ip_events["event_type"] == "SUCCESS"]
 
-    if not success_events.empty:
-        first_success = success_events.iloc[0]
+    success_events = ip_events[
+        ip_events["event_type"] == "SUCCESS"
+    ]
+
+    for _, success in success_events.iterrows():
+        window_start = success["timestamp"] - pd.Timedelta(minutes=15)
+
         prior_failures = ip_events[
             (ip_events["event_type"] == "FAILURE") &
-            (ip_events["timestamp"] < first_success["timestamp"])
+            (ip_events["timestamp"] >= window_start) &
+            (ip_events["timestamp"] < success["timestamp"])
         ]
 
-        if not prior_failures.empty:
+        if len(prior_failures) >= threshold:
             suspicious.append({
                 "source_ip": ip,
-                "successful_username": first_success["username"],
-                "success_time": first_success["timestamp"],
-                "prior_failure_count": len(prior_failures)
+                "successful_username": success["username"],
+                "success_time": success["timestamp"],
+                "prior_failure_count": len(prior_failures),
+                "detection_window_minutes": 15
             })
 
 timeline = pd.DataFrame(suspicious)
