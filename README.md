@@ -110,6 +110,21 @@ The detection script identified the following suspicious authentication sequence
 - Detection outcome: Flagged for investigation
 Investigation takeaway: A successful admin login occurred shortly after repeated failed authentication attempts from the same source IP. This behavior warrants further investigation.
 
+## MITRE ATT&CK Mapping
+
+The suspicious authentication pattern identified in this investigation is consistent with the MITRE ATT&CK technique:
+
+- **Technique:** T1110 – Brute Force
+- **Tactic:** Credential Access
+- **Observed behavior:** Repeated failed authentication attempts followed by a successful login.
+- **Detection evidence:** 14 failed login attempts within 15 minutes, followed by a successful admin login from the same source IP.
+
+**Why this mapping matters:** Repeated authentication failures followed by a successful login can indicate an attempt to gain access through password guessing.
+
+**Mapping limitation:** The simulated logs demonstrate behavior consistent with Brute Force (T1110), but they do not establish that an actual brute-force attack occurred or identify a specific sub-technique.
+
+Reference: [MITRE ATT&CK – T1110: Brute Force](https://attack.mitre.org/techniques/T1110/)
+
 ## Investigation Report
 
 See [Incident Investigation Report](report/incident_report.md) for the investigation summary, detection methodology, evidence, severity assessment, limitations, and recommended response.
