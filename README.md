@@ -76,32 +76,39 @@ No real account compromise was established.
 
 ## How to Run
 
-### 1. Create and activate a virtual environment
+1. Clone the repository
 
-```bash
+git clone https://github.com/Rameen05/Mini-SOC-Lab.git
+cd Mini-SOC-Lab
+
+2. Create and activate a virtual environment
+
 python3 -m venv .venv
 source .venv/bin/activate
-```
 
-### 2. Install dependencies
+3. Install dependencies
 
-```bash
 python -m pip install pandas matplotlib
-```
 
-### 3. Generate simulated authentication logs
+4. Generate simulated authentication logs
 
-```bash
 python src/generate_logs.py
-```
 
-### 4. Analyze the logs
+5. Analyze the logs
 
-```bash
 python src/analyze_logs.py
-```
 
-Review the generated CSV files and charts in the `outputs/` folder.
+Review the generated CSV files and charts in the outputs/ folder.
+
+## Detection Results
+The detection script identified the following suspicious authentication sequence:
+- Source IP: 203.0.113.77
+- Target account: admin
+- Failed attempts within 15 minutes: 14
+- Successful login: 11:16 AM
+- Detection threshold: 5 failed attempts
+- Detection outcome: Flagged for investigation
+Investigation takeaway: A successful admin login occurred shortly after repeated failed authentication attempts from the same source IP. This behavior warrants further investigation.
 
 ## Investigation Report
 
